@@ -52,24 +52,22 @@ Bonus: They also have a office in my hometown of Toronto!
 ### Why [Upstash](https://upstash.com/)?
 Upstash’s managed Redis handles the scaling and availability automatically-MemoMate uses Redis for rate-limiting.
 
+### Why [TurboPack](https://turbo.build/)?
+The project uses TurboPack for really really quick builds!
+
+
 ### Misc. 
-- Zod: TypeScript-first schema validation
-- Styling: TailwindCSS
-- Component Library: Shadcn/ui
-- MDX: Lets you use JSX in your markdown content
-- NextMDX
-- NextMDXRemote
+- [Zod](https://zod.dev/): TypeScript-first schema validation
+- Styling: [TailwindCSS](https://tailwindcss.com/)
+- Component Library: [Shadcn/ui](https://ui.shadcn.com/)
+- [MDX](https://mdxjs.com/docs/using-mdx/): Lets you use JSX in your markdown content
+- [NextMDX](https://nextjs.org/docs/pages/building-your-application/configuring/mdx)
+- [NextMDXRemote](https://github.com/hashicorp/next-mdx-remote)
 
-Cool Videos:
-https://www.youtube.com/watch?v=0pEbT-NwmHk (Talks about Next-MDX and Next-MDX remote) < Also why it is better than alternatives
-
-https://www.youtube.com/watch?v=n2CV6f0vFr4
-
-
-Maybe consider later:
-- [Bright](https://bright.codehike.org/)
+### Considerations
+- [Bright](https://bright.codehike.org/) for code blocks and syntax highlighting
 - [Velite](https://velite.js.org/) is a tool for building type-safe data layer, in our case it turns Markdown/MDX into app's data layer with Zod schema.
-- tRPC later? (maybe) But as of now RSC seems to be the right tool for the job for the most part.
+- [tRPC](https://trpc.io/): as of now RSC seems to be the right tool for the job for the most part. Maybe with the LLM related features, tRPC may be a better choice.
 
 ## Difficulties Encountered
 
