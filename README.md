@@ -23,10 +23,10 @@ Next.js is a React framework that enhances performance and developer experience 
 
 Overall, Next.js simplifies complex web development tasks, making it easier to create high-performance applications.
 
-
 ### Why [Vercel](https://vercel.com/)?
-- Vercel Deployment
-- Vercel PostgreSQL
+Vercel is an ideal choice for deploying Next.js projects due to its seamless integration, as it's the company behind Next.js. It offers zero-configuration deployment, automatic scaling, and a global CDN for optimized performance. Additionally, Vercel supports easy integration with cloud-based services like PostgreSQL and third-party tools, without locking you into their ecosystem, ensuring flexibility and freedom to use the best tools for your needs.
+
+I also opted to use their serverless PostgreSQL database.
 
 ### Why [Drizzle](https://orm.drizzle.team/)?
 Drizzle is a modern TypeScript ORM that provides a great development experience, ensuring that queries are type-safe and errors are caught early in the development process. Moreover, it offers a fantastic UI interface for making changes to the database, which is incredibly helpful in the development process!
@@ -52,10 +52,24 @@ Bonus: They also have a office in my hometown of Toronto!
 ### Why [Upstash](https://upstash.com/)?
 Upstash’s managed Redis handles the scaling and availability automatically-MemoMate uses Redis for rate-limiting.
 
-### Styles and Component Library 
-TailwindCSS and Shadcn/ui
+### Misc. 
+- Zod: TypeScript-first schema validation
+- Styling: TailwindCSS
+- Component Library: Shadcn/ui
+- MDX: Lets you use JSX in your markdown content
+- NextMDX
+- NextMDXRemote
+
+Cool Videos:
+https://www.youtube.com/watch?v=0pEbT-NwmHk (Talks about Next-MDX and Next-MDX remote) < Also why it is better than alternatives
+
+https://www.youtube.com/watch?v=n2CV6f0vFr4
 
 
+Maybe consider later:
+- [Bright](https://bright.codehike.org/)
+- [Velite](https://velite.js.org/) is a tool for building type-safe data layer, in our case it turns Markdown/MDX into app's data layer with Zod schema.
+- tRPC later? (maybe) But as of now RSC seems to be the right tool for the job for the most part.
 
 ## Difficulties Encountered
 
@@ -70,3 +84,10 @@ TailwindCSS and Shadcn/ui
 
 ## WIP Features
 - Everything LLM related
+
+## Learnings
+1. React Server Component
+   - Incredible explanation: https://www.joshwcomeau.com/react/server-components/
+2. New models for rendering
+   - Client vs Server component
+3. Different Approaches to parsing and rendering MDX files
