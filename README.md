@@ -72,6 +72,7 @@ The project uses TurboPack for really really quick builds!
 
 - [Zod](https://zod.dev/): TypeScript-first schema validation
 - Styling: [TailwindCSS](https://tailwindcss.com/) - Tailwind prose also provides the Markdown with automatic styling
+- Component Library: [shadcn](https://ui.shadcn.com/)
 - [MDX](https://mdxjs.com/docs/using-mdx/): Lets you use JSX in your markdown content
 - [NextMDXRemote](https://github.com/hashicorp/next-mdx-remote): MDX support for RSC
 
