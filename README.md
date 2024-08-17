@@ -52,6 +52,11 @@ Bonus: They also have a office in my hometown of Toronto!
 ### Why [Upstash](https://upstash.com/)?
 Upstash’s managed Redis handles the scaling and availability automatically-MemoMate uses Redis for rate-limiting.
 
+### Styles and Component Library 
+TailwindCSS and Shadcn/ui
+
+
+
 ## Difficulties Encountered
 
 ## List of Supported Features
