@@ -11,9 +11,5 @@ export default async function MarkdownFetcher({ url }: { url: string }) {
 
   const markdown = await res.text();
 
-  return (
-    <article className="prose lg:prose-xl">
-      <MDXRemote source={markdown} />
-    </article>
-  );
+  return <MDXRemote source={markdown} />;
 }

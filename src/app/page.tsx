@@ -20,7 +20,9 @@ export default function HomePage() {
       <div className="flex flex-wrap gap-4">
         <Suspense fallback={<>Loading...</>}>
           {mockDocuments.map((document) => (
-            <MarkdownFetcher key={document.id} url={document.url} />
+            <article key={document.id} className="prose lg:prose-xl">
+              <MarkdownFetcher url={document.url} />
+            </article>
           ))}
         </Suspense>
       </div>
