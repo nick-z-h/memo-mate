@@ -1,16 +1,15 @@
 import { Suspense } from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "~/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "~/components/ui/card";
+import { db } from "~/server/db";
 
 import MarkdownFetcher from "~/components/markdown-fetcher";
 
 import { Skeleton } from "~/components/ui/skeleton";
 import React from "react";
+
+// Page has dynamic data
+// => We want to ensure it is dynamically rendered
+export const dynamic = "force-dynamic";
 
 const mockUrls = [
   "https://utfs.io/f/3b264d81-4160-495c-ba00-62b29f52479a-w1l1jd.mdx",
@@ -24,7 +23,9 @@ const mockDocuments = mockUrls.map((url, index) => ({
   url,
 }));
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const posts = await db.query.posts.findMany();
+  console.log(posts);
   return (
     <div className="flex flex-wrap gap-4 text-wrap p-4">
       <Suspense fallback={<Skeleton className="h-80 w-96 rounded-xl" />}>
