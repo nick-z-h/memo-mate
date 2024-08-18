@@ -12,7 +12,9 @@ import React from "react";
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const documents = await db.query.documents.findMany();
+  const documents = await db.query.documents.findMany({
+    orderBy: (model, { desc }) => desc(model.id),
+  });
   return (
     <div className="flex flex-wrap gap-4 text-wrap p-4">
       <Suspense fallback={<Skeleton className="h-80 w-96 rounded-xl" />}>
