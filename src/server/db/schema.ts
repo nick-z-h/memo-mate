@@ -18,19 +18,20 @@ import {
  */
 export const createTable = pgTableCreator((name) => `memo-mate_${name}`);
 
-export const posts = createTable(
-  "post",
+export const documents = createTable(
+  "document",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    title: varchar("name", { length: 256 }).notNull(),
+    url: varchar("url", { length: 1024 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-      () => new Date()
+      () => new Date(),
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  })
+    titleIndex: index("title_idx").on(example.title),
+  }),
 );
