@@ -1,4 +1,10 @@
-import { SignedOut, SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
+import {
+  SignedOut,
+  SignInButton,
+  SignedIn,
+  UserButton,
+  ClerkLoading,
+} from "@clerk/nextjs";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -8,6 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
 import { Button } from "~/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export default function NavMenu() {
   return (
@@ -34,13 +41,20 @@ export default function NavMenu() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <SignedOut>
-              <Button>
-                <SignInButton />
-              </Button>
+              <SignInButton>
+                <Button>Sign In</Button>
+              </SignInButton>
             </SignedOut>
             <SignedIn>
-              <UserButton />
+              <Button variant="ghost" className="justify-center">
+                <UserButton />
+              </Button>
             </SignedIn>
+            <ClerkLoading>
+              <Button>
+                <Loader2 className="h-6 w-7 animate-spin" />
+              </Button>
+            </ClerkLoading>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
