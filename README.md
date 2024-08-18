@@ -98,11 +98,14 @@ The project uses TurboPack for really really quick builds!
 ## WIP Features
 
 - Everything LLM related
+- Document categories
 
 ## Learnings
 
 1. React Server Component
    - Incredible explanation: https://www.joshwcomeau.com/react/server-components/
+   - and https://vercel.com/blog/understanding-react-server-components
 2. New models for rendering
    - Client vs Server component
 3. Different Approaches to parsing and rendering MDX files
+4. React taint and how it promotes more secure development practices: https://nextjs.org/blog/security-nextjs-server-components-actions
