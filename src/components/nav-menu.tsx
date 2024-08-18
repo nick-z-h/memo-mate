@@ -1,3 +1,4 @@
+import { SignedOut, SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -6,6 +7,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
+import { Button } from "~/components/ui/button";
 
 export default function NavMenu() {
   return (
@@ -31,11 +33,14 @@ export default function NavMenu() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link href="/dashboard" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Sign In
-              </NavigationMenuLink>
-            </Link>
+            <SignedOut>
+              <Button>
+                <SignInButton />
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
