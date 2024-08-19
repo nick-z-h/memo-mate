@@ -88,7 +88,8 @@ The project uses TurboPack for really really quick builds!
 
 ### To-do:
 
-- User authentication
+- User authentication (Done)
+- Protect Files
 - Upload and delete Markdown files
 - Displaying Markdown files w/ LaTeX support and syntax highlighting support
 - Rate-limiting
