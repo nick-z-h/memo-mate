@@ -18,8 +18,9 @@ import {
 } from "~/components/ui/navigation-menu";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { UploadButton } from "~/utils/uploadthing";
+import { UploadButton, useUploadThing } from "~/utils/uploadthing";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function NavMenu() {
   const router = useRouter();
@@ -59,7 +60,24 @@ export default function NavMenu() {
                       "flex h-8 flex-col items-center justify-center px-2 text-white",
                   }}
                   onClientUploadComplete={() => {
+                    toast.dismiss("upload-begin");
+                    toast.success("Upload complete");
                     router.refresh();
+                  }}
+                  onUploadBegin={() => {
+                    toast(
+                      <div className="flex align-middle">
+                        <div>
+                          <Loader2 className="mx-2 h-4 w-4 animate-spin" />
+                        </div>
+                        <div>Uploading</div>
+                      </div>,
+                      { id: "upload-begin" },
+                    );
+                  }}
+                  onUploadError={() => {
+                    toast.dismiss("upload-begin");
+                    toast.error("Upload failed");
                   }}
                 />
               </ClerkLoaded>

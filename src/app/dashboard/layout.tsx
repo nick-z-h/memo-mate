@@ -1,3 +1,5 @@
+import { Toaster } from "~/components/ui/sonner";
+
 export default function DashboardLayout({
   children,
   modal,
@@ -7,6 +9,7 @@ export default function DashboardLayout({
       {children}
       {modal}
       <div id="modal-root" />
+      <Toaster />
     </div>
   );
 }
