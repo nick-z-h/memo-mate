@@ -16,17 +16,20 @@ async function Documents() {
   return (
     <>
       {documents.map((document) => (
-        <Card key={document.id} className="h-80 w-96">
-          <Link href={`/dashboard/document/${document.id}`}>
+        <Card key={document.id} className="relative h-80 w-96">
+          <Link
+            className="after:absolute after:inset-0"
+            href={`/dashboard/document/${document.id}`}
+          >
             <CardHeader>
               <CardTitle>{document.title}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <article className="prose h-56 w-80 overflow-auto">
-                <MarkdownFetcher url={document.url} />
-              </article>
-            </CardContent>
           </Link>
+          <CardContent>
+            <article className="prose h-56 w-80 overflow-auto">
+              <MarkdownFetcher url={document.url} />
+            </article>
+          </CardContent>
         </Card>
       ))}
     </>
