@@ -81,8 +81,13 @@ The project uses TurboPack for really really quick builds!
 - [Bright](https://bright.codehike.org/) for code blocks and syntax highlighting
 - [Velite](https://velite.js.org/) is a tool for building type-safe data layer, in our case it turns Markdown/MDX into app's data layer with Zod schema.
 - [tRPC](https://trpc.io/): as of now RSC seems to be the right tool for the job for the most part. Maybe with the LLM related features, tRPC may be a better choice.
+- [https://github.com/steven-tey/novel](Novel): Markdown text editor
 
 ## Difficulties Encountered
+
+- Creating a Breadcrumb component that seamlessly integrated with the parallel routes in the project proved to be challenging, leading to the decision to temporarily use buttons instead. However, I plan to revisit this later, as a well-implemented breadcrumb component would offer a more intuitive UI, particularly for dashboard navigation.
+
+- I faced some issues with Clerk regarding user tokens being duplicated, not working, invalid, etc. Suprisingly clearing cookies and redeploying the application from scratch completely fixed these issues.
 
 ## List of Supported Features
 
