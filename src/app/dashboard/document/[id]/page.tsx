@@ -1,6 +1,4 @@
 import MarkdownFetcher from "~/components/markdown-fetcher";
-import { Modal } from "~/components/modal";
-import { Card } from "~/components/ui/card";
 import { getDocument } from "~/server/queries";
 
 export default async function DocumentPage({
