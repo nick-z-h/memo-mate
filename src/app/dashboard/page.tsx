@@ -22,18 +22,17 @@ async function Documents() {
   return (
     <>
       {documents.map((document) => (
-        <Card key={document.id} className="relative h-80 w-96">
+        <Card key={document.id} className="relative h-auto w-96">
           <Link
             className="after:absolute after:inset-0"
             href={`/dashboard/document/${document.id}`}
-          >
-            <CardHeader>
-              <CardTitle>{document.title}</CardTitle>
-              <CardDescription>
-                {new Date(document.createdAt).toLocaleDateString()}
-              </CardDescription>
-            </CardHeader>
-          </Link>
+          />
+          <CardHeader>
+            <CardTitle>{document.title}</CardTitle>
+            <CardDescription>
+              {new Date(document.createdAt).toLocaleDateString()}
+            </CardDescription>
+          </CardHeader>
           <CardContent>
             <article className="prose h-56 w-80 overflow-auto">
               <MarkdownFetcher url={document.url} />
