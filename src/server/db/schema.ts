@@ -22,7 +22,8 @@ export const documents = createTable(
   "document",
   {
     id: serial("id").primaryKey(),
-    title: varchar("name", { length: 256 }).notNull(),
+    title: varchar("title", { length: 256 }).notNull(),
+    userId: varchar("userId", { length: 256 }).notNull(),
     url: varchar("url", { length: 1024 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)

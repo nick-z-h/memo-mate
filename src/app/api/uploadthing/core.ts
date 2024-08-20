@@ -9,14 +9,14 @@ const f = createUploadthing();
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
-  documentUploader: f({ "text/markdown": { maxFileSize: "4MB" } })
+  documentUploader: f({ "text/markdown": { maxFileSize: "4MB", maxFileCount: 50 } })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       // This code runs on your server before upload
       const user = auth();
  
       // If you throw, the user will not be able to upload
-      if (!user) throw new UploadThingError("Unauthorized");
+      if (!user.userId) throw new UploadThingError("Unauthorized");
  
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: user.userId };
@@ -26,9 +26,11 @@ export const ourFileRouter = {
       console.log("Upload complete for userId:", metadata.userId);
 
       await db.insert(documents).values({
-        title: file.name,
+        userId: metadata.userId,
         url: file.url,
-      })
+        title: file.name
+      });
+
  
       console.log("file url", file.url);
  
