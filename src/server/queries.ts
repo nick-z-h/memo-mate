@@ -15,3 +15,20 @@ export async function getDocumentsForCurrentUser() {
 
   return documents;
 }
+
+export async function getDocument(id: number) {
+  const user = auth();
+
+  // if the user is not logged in/ has not identifier
+  if (!user.userId) throw new Error("Unauthorized");
+
+  const document = await db.query.documents.findFirst({
+    where: (model, { eq }) => eq(model.id, id),
+  });
+
+  if (!document) throw new Error("Document not found");
+
+  if (document.userId != user.userId) throw new Error("Unauthorized");
+
+  return document;
+}

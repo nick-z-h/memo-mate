@@ -5,6 +5,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 import React from "react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { getDocumentsForCurrentUser } from "~/server/queries";
+import Link from "next/link";
 
 // Page has dynamic data
 // => We want to ensure it is dynamically rendered
@@ -16,14 +17,16 @@ async function Documents() {
     <>
       {documents.map((document) => (
         <Card key={document.id} className="h-80 w-96">
-          <CardHeader>
-            <CardTitle>{document.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <article className="prose h-56 w-80 overflow-auto">
-              <MarkdownFetcher url={document.url} />
-            </article>
-          </CardContent>
+          <Link href={`/dashboard/document/${document.id}`}>
+            <CardHeader>
+              <CardTitle>{document.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <article className="prose h-56 w-80 overflow-auto">
+                <MarkdownFetcher url={document.url} />
+              </article>
+            </CardContent>
+          </Link>
         </Card>
       ))}
     </>
