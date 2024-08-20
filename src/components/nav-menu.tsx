@@ -1,9 +1,12 @@
+"use client";
+
 import {
   SignedOut,
   SignInButton,
   SignedIn,
   UserButton,
   ClerkLoading,
+  ClerkLoaded,
 } from "@clerk/nextjs";
 import Link from "next/link";
 import {
@@ -15,8 +18,11 @@ import {
 } from "~/components/ui/navigation-menu";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { UploadButton } from "~/utils/uploadthing";
+import { useRouter } from "next/navigation";
 
 export default function NavMenu() {
+  const router = useRouter();
   return (
     <header className="flex h-16 items-center justify-between border-b p-4">
       <NavigationMenu>
@@ -39,6 +45,26 @@ export default function NavMenu() {
       </NavigationMenu>
       <NavigationMenu>
         <NavigationMenuList>
+          <NavigationMenuItem>
+            <SignedIn>
+              <ClerkLoaded>
+                <UploadButton
+                  endpoint="documentUploader"
+                  appearance={{
+                    button:
+                      "ut-ready:bg-green-500 ut-uploading:cursor-not-allowed rounded-r-none bg-red-500 bg-none after:bg-orange-400",
+                    container:
+                      "w-max flex-row rounded-md border-cyan-300 bg-slate-800",
+                    allowedContent:
+                      "flex h-8 flex-col items-center justify-center px-2 text-white",
+                  }}
+                  onClientUploadComplete={() => {
+                    router.refresh();
+                  }}
+                />
+              </ClerkLoaded>
+            </SignedIn>
+          </NavigationMenuItem>
           <NavigationMenuItem>
             <SignedOut>
               <SignInButton>
