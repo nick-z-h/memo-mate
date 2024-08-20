@@ -1,21 +1,17 @@
 import { Suspense } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "~/components/ui/card";
-import { db } from "~/server/db";
-
 import MarkdownFetcher from "~/components/markdown-fetcher";
-
 import { Skeleton } from "~/components/ui/skeleton";
 import React from "react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { getDocumentsForCurrentUser } from "~/server/queries";
 
 // Page has dynamic data
 // => We want to ensure it is dynamically rendered
 export const dynamic = "force-dynamic";
 
 async function Documents() {
-  const documents = await db.query.documents.findMany({
-    orderBy: (model, { desc }) => desc(model.id),
-  });
+  const documents = await getDocumentsForCurrentUser();
   return (
     <>
       {documents.map((document) => (
