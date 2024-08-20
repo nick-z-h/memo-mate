@@ -1,5 +1,11 @@
 import { Suspense } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "~/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "~/components/ui/card";
 import MarkdownFetcher from "~/components/markdown-fetcher";
 import { Skeleton } from "~/components/ui/skeleton";
 import React from "react";
@@ -23,6 +29,9 @@ async function Documents() {
           >
             <CardHeader>
               <CardTitle>{document.title}</CardTitle>
+              <CardDescription>
+                {new Date(document.createdAt).toLocaleDateString()}
+              </CardDescription>
             </CardHeader>
           </Link>
           <CardContent>
