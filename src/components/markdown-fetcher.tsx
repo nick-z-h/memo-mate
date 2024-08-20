@@ -1,5 +1,4 @@
 import React from "react";
-
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 export default async function MarkdownFetcher({ url }: { url: string }) {
@@ -12,7 +11,11 @@ export default async function MarkdownFetcher({ url }: { url: string }) {
 
     const markdown = await res.text();
 
-    return <MDXRemote source={markdown} />;
+    return (
+      <div className="wrapper">
+        <MDXRemote source={markdown} />
+      </div>
+    );
   } catch (error) {
     console.error(`Error fetching markdown from ${url}:`, error);
     return <div>Failed to load content. Please try again later.</div>;
