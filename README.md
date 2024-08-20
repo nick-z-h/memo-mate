@@ -89,6 +89,8 @@ The project uses TurboPack for really really quick builds!
 
 - I faced some issues with Clerk regarding user tokens being duplicated, not working, invalid, etc. Suprisingly clearing cookies and redeploying the application from scratch completely fixed these issues.
 
+- Nested 'a' tag issues due to user uploaded markdown files having Links
+
 ## List of Supported Features
 
 ### To-do:
