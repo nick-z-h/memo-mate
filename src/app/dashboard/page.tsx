@@ -10,8 +10,10 @@ import MarkdownFetcher from "~/components/markdown-fetcher";
 import { Skeleton } from "~/components/ui/skeleton";
 import React from "react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { getDocumentsForCurrentUser } from "~/server/queries";
+import { deleteDocument, getDocumentsForCurrentUser } from "~/server/queries";
 import Link from "next/link";
+import { X } from "lucide-react";
+import { Button } from "~/components/ui/button";
 
 // Page has dynamic data
 // => We want to ensure it is dynamically rendered
@@ -28,6 +30,25 @@ async function Documents() {
             scroll={false}
             href={`/dashboard/document/${document.id}`}
           />
+          <div className="flex justify-end p-2">
+            <form
+              className="z-50"
+              action={async () => {
+                "use server";
+
+                const idNumber = Number(document.id);
+
+                if (Number.isNaN(idNumber))
+                  throw new Error("Invalid document id");
+
+                await deleteDocument(idNumber);
+              }}
+            >
+              <Button variant="outline" className="z-50 h-8 w-8 p-0">
+                <X />
+              </Button>
+            </form>
+          </div>
           <CardHeader>
             <CardTitle>{document.title}</CardTitle>
             <CardDescription>

@@ -1,6 +1,10 @@
 import "server-only";
 import { db } from "./db";
 import { auth } from "@clerk/nextjs/server";
+import { documents } from "./db/schema";
+import { and, eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+import analyticsServerClient from "./analytics";
 
 export async function getDocumentsForCurrentUser() {
   const user = auth();
@@ -31,4 +35,25 @@ export async function getDocument(id: number) {
   if (document.userId != user.userId) throw new Error("Unauthorized");
 
   return document;
+}
+
+export async function deleteDocument(id: number) {
+  const user = auth();
+
+  // if the user is not logged in/ has not identifier
+  if (!user.userId) throw new Error("Unauthorized");
+
+  await db
+    .delete(documents)
+    .where(and(eq(documents.id, id), eq(documents.userId, user.userId)));
+
+  analyticsServerClient.capture({
+    distinctId: user.userId,
+    event: "delete_document",
+    properties: {
+      documentId: id,
+    },
+  });
+
+  revalidatePath("/dashboard");
 }

@@ -79,8 +79,8 @@ export default function NavMenu() {
                       { id: "upload-begin" },
                     );
                   }}
-                  onUploadError={() => {
-                    posthog.capture("upload_error");
+                  onUploadError={(error) => {
+                    posthog.capture("upload_error", { error });
                     toast.dismiss("upload-begin");
                     toast.error("Upload failed");
                   }}
