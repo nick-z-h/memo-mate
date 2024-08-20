@@ -6,6 +6,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import NavMenu from "~/components/nav-menu";
 import { ourFileRouter } from "~/app/api/uploadthing/core";
 import { extractRouterConfig } from "uploadthing/server";
+import { CSPostHogProvider } from "~/app/_analytics/provider";
 
 export const metadata: Metadata = {
   title: "MemoMate",
@@ -18,21 +19,23 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${GeistSans.variable} flex flex-col gap-4`}>
-        <body>
-          <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
-          <NavMenu />
-          {children}
-        </body>
-      </html>
+      <CSPostHogProvider>
+        <html lang="en" className={`${GeistSans.variable} flex flex-col gap-4`}>
+          <body>
+            <NextSSRPlugin
+              /**
+               * The `extractRouterConfig` will extract **only** the route configs
+               * from the router to prevent additional information from being
+               * leaked to the client. The data passed to the client is the same
+               * as if you were to fetch `/api/uploadthing` directly.
+               */
+              routerConfig={extractRouterConfig(ourFileRouter)}
+            />
+            <NavMenu />
+            {children}
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }

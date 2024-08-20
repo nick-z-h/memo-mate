@@ -18,12 +18,14 @@ import {
 } from "~/components/ui/navigation-menu";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { UploadButton, useUploadThing } from "~/utils/uploadthing";
+import { UploadButton } from "~/utils/uploadthing";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { usePostHog } from "posthog-js/react";
 
 export default function NavMenu() {
   const router = useRouter();
+  const posthog = usePostHog();
   return (
     <header className="flex h-16 items-center justify-between border-b p-4">
       <NavigationMenu>
@@ -60,11 +62,13 @@ export default function NavMenu() {
                       "flex h-8 flex-col items-center justify-center px-2 text-white",
                   }}
                   onClientUploadComplete={() => {
+                    posthog.capture("upload_complete");
                     toast.dismiss("upload-begin");
                     toast.success("Upload complete");
                     router.refresh();
                   }}
                   onUploadBegin={() => {
+                    posthog.capture("upload_begin");
                     toast(
                       <div className="flex align-middle">
                         <div>
@@ -76,6 +80,7 @@ export default function NavMenu() {
                     );
                   }}
                   onUploadError={() => {
+                    posthog.capture("upload_error");
                     toast.dismiss("upload-begin");
                     toast.error("Upload failed");
                   }}
