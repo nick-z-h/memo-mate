@@ -26,11 +26,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   return createPortal(
-    <div
-      className="modal-backdrop cursor-pointer"
-      onClick={handleBackdropClick}
-    >
-      <dialog ref={dialogRef} className="modal cursor-auto" onClose={onDismiss}>
+    <div className="cursor-pointer" onClick={handleBackdropClick}>
+      <dialog ref={dialogRef} className="cursor-auto" onClose={onDismiss}>
         <button onClick={onDismiss} className="close-button" />
         {children}
       </dialog>

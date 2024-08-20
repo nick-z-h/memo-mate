@@ -25,6 +25,7 @@ async function Documents() {
         <Card key={document.id} className="relative h-auto w-96">
           <Link
             className="after:absolute after:inset-0"
+            scroll={false}
             href={`/dashboard/document/${document.id}`}
           />
           <CardHeader>
