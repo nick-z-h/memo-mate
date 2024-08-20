@@ -100,6 +100,8 @@ The project uses TurboPack for really really quick builds!
 - Rate-limiting
 - Logging
 - Error management and real-time monitoring
+- Support images
+- Sentry
 
 ## WIP Features
 
