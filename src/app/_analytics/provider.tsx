@@ -1,7 +1,6 @@
 // app/providers.js
 "use client";
 import { useAuth, useUser } from "@clerk/nextjs";
-import { userInfo } from "os";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import React, { useEffect } from "react";
