@@ -1,5 +1,6 @@
 import MarkdownFetcher from "~/components/markdown-fetcher";
 import { Modal } from "~/components/modal";
+import { Card } from "~/components/ui/card";
 import { getDocument } from "~/server/queries";
 
 export default async function DocumentPage({
@@ -13,8 +14,10 @@ export default async function DocumentPage({
 
   const document = await getDocument(idNumber);
   return (
-    <article className="prose overflow-auto py-4">
-      <MarkdownFetcher url={document.url} />
-    </article>
+    <div className="flex flex-wrap justify-center gap-4 text-wrap p-4">
+      <article className="prose overflow-auto py-4">
+        <MarkdownFetcher url={document.url} />
+      </article>
+    </div>
   );
 }

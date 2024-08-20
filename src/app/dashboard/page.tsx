@@ -38,7 +38,7 @@ async function Documents() {
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-wrap gap-4 text-wrap p-4">
+    <div className="flex flex-wrap justify-center gap-4 text-wrap p-4">
       <SignedIn>
         <Suspense fallback={<Skeleton className="h-80 w-96 rounded-xl" />}>
           <Documents />
