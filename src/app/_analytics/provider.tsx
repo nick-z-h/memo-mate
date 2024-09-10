@@ -1,4 +1,4 @@
-// app/providers.js
+// post-hog configuration and wrapper around Clerk auth
 "use client";
 import { useAuth, useUser } from "@clerk/nextjs";
 import posthog from "posthog-js";
