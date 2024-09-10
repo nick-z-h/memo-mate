@@ -18,6 +18,13 @@ Currently, the idea is to use a Multi-Agent approach with different AI agents fo
   - Receive real-time responses and insights from your notes, making research and information retrieval fast and efficient.
 - Simply put MemoMate is here to assist you in "memo"-rizing your information!
 
+# Filestructure
+
+Key Folders:
+app/: The App Router, which consists of layouts, templates, and file-based routing logic.
+components/: Consists of UI components.
+server/: Consists of db query, ratelimiting, and analytics logic.
+
 ## Techstack
 
 I chose each piece of the stack based on the following criteria:
