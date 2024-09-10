@@ -105,12 +105,14 @@ The project uses TurboPack for really quick builds!
 
 - Nested 'a' tag issues due to user-uploaded markdown files having Links, fixed by rearranging the Link structure.
 
+- Markdown with invalid references to 'local' files crashing the preview, fixed by splitting the compile step and view step.
+
 ## List of Supported Features
 
 ### To-do:
 
 - Displaying Markdown files w/ LaTeX support and syntax highlighting support
-- Support images
+- Support user-uploaded images
 - Everything LLM related
 - Document categories
 
