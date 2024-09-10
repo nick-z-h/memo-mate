@@ -1,6 +1,8 @@
 import MarkdownFetcher from "~/components/markdown-fetcher";
 import { getDocument } from "~/server/queries";
 
+// Full-page preview of Markdown documents
+// Uses TailwindCSS prose to automatically style markdown document fetched from MarkdownFetcher
 export default async function DocumentPage({
   params: { id: documentId },
 }: {
