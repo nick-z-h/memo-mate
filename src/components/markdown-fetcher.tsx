@@ -11,13 +11,24 @@ export default async function MarkdownFetcher({ url }: { url: string }) {
 
     const markdown = await res.text();
 
-    return (
-      <div className="wrapper">
-        <MDXRemote source={markdown} />
-      </div>
-    );
+    try {
+      const result = await MDXRemote({
+        source: markdown,
+      });
+
+      return <div className="wrapper">{result}</div>;
+    } catch (error) {
+      console.error(`Error compiling markdown from ${url}:`, error);
+      return (
+        <div>
+          Failed to load content, compilation failed. Please try again later.
+        </div>
+      );
+    }
   } catch (error) {
     console.error(`Error fetching markdown from ${url}:`, error);
-    return <div>Failed to load content. Please try again later.</div>;
+    return (
+      <div>Failed to load content, fetch failed. Please try again later.</div>
+    );
   }
 }
