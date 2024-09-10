@@ -47,6 +47,7 @@ export async function deleteDocument(id: number) {
     .delete(documents)
     .where(and(eq(documents.id, id), eq(documents.userId, user.userId)));
 
+  // analytics: track document deletions
   analyticsServerClient.capture({
     distinctId: user.userId,
     event: "delete_document",
@@ -55,5 +56,6 @@ export async function deleteDocument(id: number) {
     },
   });
 
+  // Triggers a refresh and purges cached data so that the new state properly reflects the deleted document
   revalidatePath("/dashboard");
 }
