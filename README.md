@@ -21,9 +21,12 @@ Currently, the idea is to use a Multi-Agent approach with different AI agents fo
 # Filestructure
 
 Key Folders:
-app/: The App Router, which consists of layouts, templates, and file-based routing logic.
-components/: Consists of UI components.
-server/: Consists of db query, ratelimiting, and analytics logic.
+
+- app/: The App Router, which consists of layouts, templates, and file-based routing logic.
+
+- components/: Consists of UI components.
+
+- server/: Consists of db query, ratelimiting, and analytics logic.
 
 ## Techstack
 
