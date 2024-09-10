@@ -1,6 +1,8 @@
 import React from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+// MarkdownFetcher fetches Markdown content and converts it into a JSX element.
+// Markdown styling is automatically handled using Tailwind Prose.
 export default async function MarkdownFetcher({ url }: { url: string }) {
   try {
     const res = await fetch(url);

@@ -1,4 +1,4 @@
-"use client";
+"use client"; // ensures client-side rendering instead of SSR or SSG
 
 import { type ElementRef, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  // When the modal closes, navigate back to the previous URL.
+  // This approach handles scenarios where users share previews with others gracefully.
   function onDismiss() {
     router.back();
   }

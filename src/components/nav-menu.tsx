@@ -62,12 +62,14 @@ export default function NavMenu() {
                       "flex h-8 flex-col items-center justify-center px-2 text-white",
                   }}
                   onClientUploadComplete={() => {
+                    // capture posthog event for analytics
                     posthog.capture("upload_complete");
                     toast.dismiss("upload-begin");
                     toast.success("Upload complete");
                     router.refresh();
                   }}
                   onUploadBegin={() => {
+                    // capture posthog event for analytics
                     posthog.capture("upload_begin");
                     toast(
                       <div className="flex align-middle">
@@ -80,6 +82,7 @@ export default function NavMenu() {
                     );
                   }}
                   onUploadError={(error) => {
+                    // capture posthog event for analytics
                     posthog.capture("upload_error", { error });
                     toast.dismiss("upload-begin");
                     toast.error("Upload failed");
