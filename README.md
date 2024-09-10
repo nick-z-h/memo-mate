@@ -2,6 +2,12 @@
 
 MemoMate is a full-stack web application that empowers users to upload their notes, data, and documents and interact with them using AI-driven chat functionality. With MemoMate, you can easily query, explore, and gain insights from your personal documents, making information retrieval seamless and intuitive.
 
+Currently, it only supports object storage features. However, significant time and effort were dedicated to the observability and error management of these features.
+
+As part of my research at UWaterloo, I will have hands-on experience developing Multi-Agent AI systems, so until I gain more practical experience, the AI-driven features will not be developed.
+
+Currently, the idea is to use a Multi-Agent approach with different AI agents for differing specialties such as summarizing information, generating examples/practice problems, and solving queried problems.
+
 ## Core Features
 
 - Upload and Organize Documents:
@@ -20,53 +26,61 @@ I chose each piece of the stack based on the following criteria:
 2. Scalability
 3. Maintainability
 
-Moreover, the project is primarily powered and scaffolded by the [T3-Project](https://create.t3.gg/), which streamlines the setup of typesafe Next.js apps WITHOUT compromising modularity.
+Moreover, the project is primarily powered and scaffolded by the [T3-Project](https://create.t3.gg/).
 
 ### Why [Next.js](https://nextjs.org/)?
 
-Next.js is a React framework that enhances performance and developer experience through features like server actions for secure server-side operations, partial pre-rendering for optimizing load times, and advanced routing capabilities like parallel and intercepted routes.
+Next.js has great features like server actions for secure server-side operations, partial pre-rendering for optimizing load times, and advanced routing capabilities like parallel and intercepted routes.
+
+In the project, I leveraged Next.js parallel routes to create pop-up modals with distinct UI states for onClick and refresh actions. Specifically, when users browse their document library and click on a document, they can preview it through a modal, with the URL updating to /dashboard/document/[id] without triggering a full page refresh. If the URL is shared, other users who visit the link will see a ‘full-document-view’ instead of a preview, maintaining a consistent experience for all users based on the same URL.
 
 Overall, Next.js simplifies complex web development tasks, making it easier to create high-performance applications.
 
 ### Why [Vercel](https://vercel.com/)?
 
-Vercel is an ideal choice for deploying Next.js projects due to its seamless integration, as it's the company behind Next.js. It offers zero-configuration deployment, automatic scaling, and a global CDN for optimized performance. Additionally, Vercel supports easy integration with cloud-based services like PostgreSQL and third-party tools, without locking you into their ecosystem, ensuring flexibility and freedom to use the best tools for your needs.
+Vercel uses AWS infrastructure, so it’s built on a solid and reliable foundation. However, it offers a much better user experience than AWS and is free for my needs.
 
-I also opted to use their serverless PostgreSQL database.
+It also makes deployment easy with zero configuration, scales automatically includes a global CDN, and has a cloud-based PostgreSQL service, which I used for my project.
 
 ### Why [Drizzle](https://orm.drizzle.team/)?
 
-Drizzle is a modern TypeScript ORM that provides a great development experience, ensuring that queries are type-safe and errors are caught early in the development process. Moreover, it offers a fantastic UI interface for making changes to the database, which is incredibly helpful in the development process!
+Drizzle is a TypeScript ORM that provides a great development experience, ensuring that queries are type-safe and errors are caught early in the development process. I previously used PrismaORM and had no complaints, but I wanted to try something new, and have heard great things about Drizzle.
+
+Drizzle is a TypeScript ORM that enhances the development experience by ensuring type-safe queries and catching errors early, it also has a nice dashboard for viewing tables.
+
+I previously used PrismaORM, but I wanted to try something new and have heard excellent things about Drizzle.
 
 ### Why [PostgreSQL](https://vercel.com/docs/storage/vercel-postgres)?
 
-I chose PostgreSQL for its simplicity, strong community support, and proven reliability. While newer options like CockroachDB and PlanetScale offer benefits in distributed systems and scalability. Most importantly, though, PostgreSQL's free access (locally and on the Vercel platform) and my prior experience with it made it the ideal choice for my project.
+I chose PostgreSQL for its simplicity. While newer options like CockroachDB and PlanetScale offer benefits in distributed systems and scalability, I don't expect this project to have many or any users besides myself and some friends.
+
+Vercel does support horizontal scaling for its PostgreSQL services, but it's paid. (So I avoided it)
 
 ### Why [Clerk](https://clerk.com/)?
 
-Authentication can be hard and daunting, which I experienced first-hand in my go-auth project. Clerk is a practical choice since it provides pre-built, customizable authentication components that save time and effort. It integrates easily with popular frontend frameworks and handles security best practices out of the box, reducing the risk of vulnerabilities. Clerk's scalability ensures it can grow with your project, while its straightforward API and good documentation enhance the developer experience. NextAuth is also a great choice, but I've had better developer experience with Clerk; in fact, with Clerk, I can have full user authentication done in MINUTES.
+Authentication can be hard and daunting, which I experienced first-hand in my go-auth project, where I created an auth system using SHA256.
+
+Clerk was an easy and practical choice for this project since it provides pre-built, customizable authentication components that save time and effort.
+
+There were some bugs with it though, but a simple refresh on the Vercel platform fixed it.
 
 ### Why [PostHog](https://posthog.com/)?
 
 While PostHog is primarily a product analytics tool focused on tracking user behaviour and interactions, it also offers features relevant to logging that align with my needs.
 
-My choice of PostHog over a more specialized solution like Axiom was based on its comprehensive nature. PostHog not only caters to analytics but also provides basic logging features, making it a one-stop solution for all my needs.
-
-In the future, investing in more robust logging, such as Axiom, may be worthwhile.
+I chose not to use more specialized logging and analytics solutions like Axiom and Datadog since they were completely overkill for my project.
 
 ### Why [Sentry](https://sentry.io/welcome/)?
 
-Seems to be the industry standard tool for error management and real-time monitoring.
-
-Bonus: They also have a office in my hometown of Toronto!
+I used Sentry since it seemed to be the industry standard tool for error management and real-time monitoring.
 
 ### Why [Upstash](https://upstash.com/)?
 
-Upstash’s managed Redis handles the scaling and availability automatically-MemoMate uses Redis for rate-limiting.
+I used Upstash’s managed Redis for rate-limiting (particularly for uploading files).
 
 ### Why [TurboPack](https://turbo.build/)?
 
-The project uses TurboPack for really really quick builds!
+The project uses TurboPack for really quick builds!
 
 ### Misc.
 
@@ -79,34 +93,24 @@ The project uses TurboPack for really really quick builds!
 ### Considerations
 
 - [Bright](https://bright.codehike.org/) for code blocks and syntax highlighting
-- [Velite](https://velite.js.org/) is a tool for building type-safe data layer, in our case it turns Markdown/MDX into app's data layer with Zod schema.
-- [tRPC](https://trpc.io/): as of now RSC seems to be the right tool for the job for the most part. Maybe with the LLM related features, tRPC may be a better choice.
-- [https://github.com/steven-tey/novel](Novel): Markdown text editor
+- [Velite](https://velite.js.org/) is a tool for building a type-safe data layer, in our case, it turns Markdown/MDX into the app's data layer with Zod schema.
+- [tRPC](https://trpc.io/): As of now RSC seems to be the right tool for the job for the most part. Maybe with the LLM-related features, tRPC may be a better choice.
+- [https://github.com/steven-tey/novel](Novel): Markdown text editor (Need to work on adding)
 
 ## Difficulties Encountered
 
-- Creating a Breadcrumb component that seamlessly integrated with the parallel routes in the project proved to be challenging, leading to the decision to temporarily use buttons instead. However, I plan to revisit this later, as a well-implemented breadcrumb component would offer a more intuitive UI, particularly for dashboard navigation.
+- Creating a Breadcrumb component that seamlessly integrated with the parallel routes in the project proved to be challenging, leading to the decision to use buttons instead. However, I plan to revisit this later, as a well-implemented breadcrumb component would offer a more intuitive UI, particularly for dashboard navigation.
 
-- I faced some issues with Clerk regarding user tokens being duplicated, not working, invalid, etc. Suprisingly clearing cookies and redeploying the application from scratch completely fixed these issues.
+- I faced some issues with Clerk regarding user tokens being duplicated, not working, invalid, etc. Clearing cookies and redeploying the application from scratch fixed these issues completely.
 
-- Nested 'a' tag issues due to user uploaded markdown files having Links
+- Nested 'a' tag issues due to user-uploaded markdown files having Links, fixed by rearranging the Link structure.
 
 ## List of Supported Features
 
 ### To-do:
 
-- User authentication (Done)
-- Protect Files
-- Upload and delete Markdown files
 - Displaying Markdown files w/ LaTeX support and syntax highlighting support
-- Rate-limiting
-- Logging
-- Error management and real-time monitoring
 - Support images
-- Sentry
-
-## WIP Features
-
 - Everything LLM related
 - Document categories
 
